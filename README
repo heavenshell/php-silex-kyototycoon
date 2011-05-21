@@ -1,0 +1,49 @@
+Silex \Net\KyotoTycoon extension.
+
+This extension is for the Silex microframework enables to use Kyoto Tycoon.
+
+    <?php
+    require_once 'silex.phar';
+    require_once dirname(__DIR__) . '/src/KyotoTycoonExtension.php';
+
+    $zendpath = getenv('KT_PATH');
+
+    $app = new Silex\Application();
+    $app->register(new \KyotoTycoonExtension(), array(
+        'kt.class_path' => $ktpath,
+        'kt.options'    => array('port' => 19780)
+    ));
+
+    $app->get('/set', function () use ($app) {
+        $client = $app['kt.client'];
+        $client->set('test', 'ok');
+
+        return json_encode(true);
+    });
+
+    $app->get('/get', function () use ($app) {
+        $client = $app['kt.client'];
+        $result = $client->get('test');
+
+        return json_encode($result);
+    });
+
+if (getenv('SILEX_TEST')) {
+    return $app;
+}
+$app->run();
+
+
+
+Set \Net\KyotoTycoon library to your include_path
+Run Kyoto Tycoon with port 19780
+$ ktserver -port 19780
+
+- Running examples
+  Add SetEnv KT_PATH /Path/To/include_path to .htaccess
+- Running tests
+  export KT_PATH=/Path/To/include_path
+
+See more detail 
+- http://fallabs.com/kyototycoon/
+- https://github.com/heavenshell/php-net-kyototycoon
