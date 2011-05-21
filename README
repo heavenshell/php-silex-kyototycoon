@@ -28,16 +28,15 @@ This extension is for the Silex microframework enables to use Kyoto Tycoon.
         return json_encode($result);
     });
 
-if (getenv('SILEX_TEST')) {
-    return $app;
-}
-$app->run();
-
+    if (getenv('SILEX_TEST')) {
+        return $app;
+    }
+    $app->run();
 
 
 Set \Net\KyotoTycoon library to your include_path
-Run Kyoto Tycoon with port 19780
-$ ktserver -port 19780
+Run Kyoto Tycoon with port 19780 before you run examples or tests
+  $ ktserver -port 19780
 
 - Running examples
   Add SetEnv KT_PATH /Path/To/include_path to .htaccess
