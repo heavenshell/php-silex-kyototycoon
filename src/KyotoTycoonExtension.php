@@ -36,7 +36,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @use       \Silex\Application
- * @use       \Silex\ExtensionInterface
+ * @use       \Silex\ServiceProviderInterface
  * @category  \Silex
  * @package   \Silex\Extensions
  * @version   $id$
